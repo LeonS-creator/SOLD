@@ -1,1 +1,18 @@
-'FROM python:3.10\nWORKDIR /app\nCOPY requirements.txt .\nRUN pip install -r requirements.txt\nCOPY . .\nEXPOSE 8000\nCMD ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8000"]' 
+# Use an official Python runtime as a parent image
+FROM python:3.10
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the entire backend code
+COPY . .
+
+# Expose the FastAPI port
+EXPOSE 8000
+
+# Run the FastAPI application
+CMD ["uvicorn", "app.main:app", "--host=0.0.0.0", "--port=8000"]
