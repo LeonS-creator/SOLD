@@ -7,12 +7,18 @@ export default function Home() {
   const [userType, setUserType] = useState<"customer" | "business">("customer");
   const [name, setName] = useState<string>("");
   const [qrCode, setQrCode] = useState<string | null>(null);
+  const BASE_URL = "https://sold-zyhf.onrender.com";  // Use your actual Render backend URL
 
   const registerUser = async () => {
     const endpoint =
       userType === "business"
-        ? "http://localhost:8000/register/business/"
-        : "http://localhost:8000/register/user/";
+        ? `${BASE_URL}/register/business/`
+        : `${BASE_URL}/register/user/`;
+    
+    // const endpoint =
+    //   userType === "business"
+    //     ? "http://localhost:8000/register/business/"
+    //     : "http://localhost:8000/register/user/";
 
 
     // const endpoint =
