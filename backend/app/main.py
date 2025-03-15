@@ -7,8 +7,8 @@ app = FastAPI()
 
 # ✅ Update CORS settings to allow requests from frontend
 origins = [
-    "sold-ten.vercel.app",  # Replace with your actual Vercel URL
-    "sold-leons-creators-projects.vercel.app",  # ✅ Replace with your actual Vercel frontend URL
+    "https://sold-ten.vercel.app",  # ✅ Corrected Vercel URL
+    "https://sold-leons-creators-projects.vercel.app",  # ✅ Corrected Vercel URL
     "http://localhost:3000",  # ✅ Allow localhost for testing
 ]
 
@@ -37,4 +37,3 @@ def register_user(user: UserCreate):
 @app.post("/register/business/")
 def register_business(user: UserCreate):
     return {"message": f"Business {user.name} registered", "qr_code": f"QR_{user.name}"}
-
