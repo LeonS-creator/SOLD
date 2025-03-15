@@ -4,12 +4,18 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-# ✅ Allow CORS for frontend on localhost:3000
+# ✅ Allow requests from your frontend on Vercel
+origins = [
+    "sold-ten.vercel.app",  # Replace with your actual Vercel URL
+    "sold-leons-creators-projects.vercel.app",
+    "http://localhost:3000",  # Allow localhost for testing
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # ✅ Frontend origin
+    allow_origins=origins,  # Allow frontend to communicate with the backend
     allow_credentials=True,
-    allow_methods=["*"],  # ✅ Allow all methods (GET, POST, etc.)
+    allow_methods=["*"],  # ✅ Allow all HTTP methods (GET, POST, OPTIONS, etc.)
     allow_headers=["*"],  # ✅ Allow all headers
 )
 
